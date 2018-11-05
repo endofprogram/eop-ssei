@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="off" monitorInterval="60">
+  <Appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %message - %class{36}.%method(%file:%line)%n"/>
+    </Console>
+  	<RollingFile name="RollingFile" fileName="../logs/eop-ssm.log" filePattern="../logs/eop-ssm-%d{yyyy-MM-dd}-%i.log">
+  		<PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %message - %class{36}.%method(%file:%line)%n" />
+  		<Policies>
+  			<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+  			<SizeBasedTriggeringPolicy size="50MB" />
+  		</Policies>
+  		<DefaultRolloverStrategy max="200" />
+  	</RollingFile>
+  </Appenders>
+  <Loggers>
+    <Root level="INFO">
+      <AppenderRef ref="RollingFile" />
+    </Root>
+  </Loggers>
+</Configuration>
