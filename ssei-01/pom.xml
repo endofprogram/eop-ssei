@@ -9,9 +9,7 @@
 		<artifactId>eop-ssei</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<groupId>org.eop.ssei</groupId>
 	<artifactId>ssei-01</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	
 	<name>ssei-01 Maven Webapp</name>
@@ -60,7 +58,7 @@
 						<port>8080</port>
 					</httpConnector>
 					<webApp>
-						<contextPath>/eop-ssm</contextPath>
+						<contextPath>/eop-ssei</contextPath>
 					</webApp>
 				</configuration>
 			</plugin>

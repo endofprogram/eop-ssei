@@ -1,14 +1,14 @@
-package org.eop.ssei.config;
+package org.eop.ssei.web.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
  * @author lixinjie
- * @since 2018-11-05
+ * @since 2018-01-08
  */
 @Configuration
-@ComponentScan(basePackages = {"org.eop.ssei.config.*", "org.eop.ssei.**.service"})
-public class RootConfig {
+@ComponentScan(basePackages = {"org.eop.ssei.web.config.*", "org.eop.ssei.**.controller"})
+public class WebConfig {
 
 }
