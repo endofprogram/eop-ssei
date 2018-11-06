@@ -6,7 +6,6 @@ import javax.servlet.ServletRegistration.Dynamic;
 
 import org.eop.ssei.config.RootConfig;
 import org.eop.ssei.web.config.WebConfig;
-import org.eop.ssei.web.config.security.WebSecurityConfig;
 import org.eop.ssei.web.env.EnvUtils;
 import org.eop.ssei.web.rootac.initializer.ProfileApplicationContextInitializer;
 import org.springframework.context.ApplicationContextInitializer;
@@ -33,7 +32,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class<?>[] {WebConfig.class/*, WebSecurityConfig.class*/};
+		return new Class<?>[] {WebConfig.class};
 	}
 
 	@Override
