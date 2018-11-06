@@ -34,6 +34,7 @@
 		<module>ssei-01</module>
 		<module>ssei-02</module>
 		<module>ssei-03</module>
+		<module>ssei-04</module>
 	</modules>
 
 	<dependencies>
