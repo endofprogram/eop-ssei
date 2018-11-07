@@ -1,5 +1,11 @@
 package org.eop.ssei.web.config.security;
 
+import java.util.Arrays;
+
+import org.eop.ssei.web.config.security.access.decision.CompositeAccessDecisionManager;
+import org.eop.ssei.web.config.security.access.decision.RoleAccessDecisionVoter;
+import org.eop.ssei.web.config.security.access.decision.SupportAccessDecisionVoter;
+import org.eop.ssei.web.config.security.access.decision.UriAccessDecisionVoter;
 import org.eop.ssei.web.config.security.access.handler.JsonAccessDeniedHandler;
 import org.eop.ssei.web.config.security.login.handler.JsonAuthenticationFailureHandler;
 import org.eop.ssei.web.config.security.login.handler.JsonAuthenticationSuccessHandler;
@@ -34,6 +40,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
+			.accessDecisionManager(new CompositeAccessDecisionManager(
+					Arrays.asList(new SupportAccessDecisionVoter(), new RoleAccessDecisionVoter(),
+							new UriAccessDecisionVoter())))
 			.mvcMatchers("/example/rolea").hasRole("A")
 			.mvcMatchers("/example/roleb").hasRole("B")
 			.anyRequest().authenticated()

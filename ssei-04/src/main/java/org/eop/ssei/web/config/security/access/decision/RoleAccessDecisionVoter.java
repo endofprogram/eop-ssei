@@ -20,6 +20,15 @@ public class RoleAccessDecisionVoter implements AccessDecisionVoter<FilterInvoca
 		if (authentication.getAuthorities().contains(new RoleGrantedAuthority("ROLE_Admin"))) {
 			return ACCESS_GRANTED;
 		}
+		for (ConfigAttribute attribute : attributes) {
+			String expression = attribute.toString();
+			if (expression.startsWith("hasRole") ||
+					expression.startsWith("hasAnyRole")) {
+				if (containsRoles(authentication, expression)) {
+					return ACCESS_GRANTED;
+				}
+			}
+		}
 		return ACCESS_ABSTAIN;
 	}
 	
@@ -31,5 +40,27 @@ public class RoleAccessDecisionVoter implements AccessDecisionVoter<FilterInvoca
 	@Override
 	public boolean supports(Class<?> clazz) {
 		return FilterInvocation.class.isAssignableFrom(clazz);
+	}
+	
+	private boolean containsRoles(Authentication authentication, String expression) {
+		String[] roles = getRoles(expression);
+		for (String role : roles) {
+			if (authentication.getAuthorities().contains(new RoleGrantedAuthority(role))) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private String[] getRoles(String expression) {
+		int begin = expression.indexOf("(");
+		int end = expression.lastIndexOf(")");
+		String expr = expression.substring(begin + 1, end);
+		String[] exprs = expr.split(",");
+		String[] roles = new String[exprs.length];
+		for (int i = 0; i < exprs.length; i++) {
+			roles[i] = exprs[i].substring(1, exprs[i].length() - 1);
+		}
+		return roles;
 	}
 }

@@ -1,4 +1,4 @@
-package org.eop.ssm.web.config.security.access.decision;
+package org.eop.ssei.web.config.security.access.decision;
 
 import java.util.Collection;
 
