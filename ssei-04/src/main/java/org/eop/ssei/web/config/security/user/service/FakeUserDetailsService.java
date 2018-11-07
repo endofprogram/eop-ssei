@@ -3,7 +3,7 @@ package org.eop.ssei.web.config.security.user.service;
 import java.util.Arrays;
 
 import org.eop.ssei.web.config.security.access.authority.RoleGrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
+import org.eop.ssei.web.config.security.access.authority.UriGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -28,6 +28,9 @@ public class FakeUserDetailsService implements UserDetailsService {
 		}
 		if ("ub".equals(username)) {
 			return new User("ub", "123", Arrays.asList(new RoleGrantedAuthority("ROLE_B")));
+		}
+		if ("uc".equals(username)) {
+			return new User("uc", "123", Arrays.asList(new UriGrantedAuthority("/example/rolea")));
 		}
 		throw new UsernameNotFoundException("username '" + username + "' not found");
 	}
