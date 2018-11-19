@@ -19,9 +19,9 @@ public class UriAccessDecisionVoter implements AccessDecisionVoter<FilterInvocat
 			Collection<ConfigAttribute> attributes) {
 		String uri = getRequestUri(fi);
 		if (authentication.getAuthorities().contains(new UriGrantedAuthority(uri))) {
-			return AccessDecisionVoter.ACCESS_GRANTED;
+			return ACCESS_GRANTED;
 		}
-		return AccessDecisionVoter.ACCESS_DENIED;
+		return ACCESS_DENIED;
 	}
 	
 	@Override
