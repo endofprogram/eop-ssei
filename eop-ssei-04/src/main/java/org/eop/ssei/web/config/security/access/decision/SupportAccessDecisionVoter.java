@@ -13,12 +13,18 @@ import org.springframework.security.web.FilterInvocation;
  */
 public class SupportAccessDecisionVoter implements AccessDecisionVoter<FilterInvocation> {
 	
+	private static final String denyAll = "denyAll";
 	private static final String permitAll = "permitAll";
 	private static final String authenticated = "authenticated";
 	
 	@Override
 	public int vote(Authentication authentication, FilterInvocation fi,
 			Collection<ConfigAttribute> attributes) {
+		for (ConfigAttribute attribute : attributes) {
+			if (attribute.toString().equals(denyAll)) {
+				return ACCESS_DENIED;
+			}
+		}
 		for (ConfigAttribute attribute : attributes) {
 			if (attribute.toString().equals(permitAll)) {
 				return ACCESS_GRANTED;
