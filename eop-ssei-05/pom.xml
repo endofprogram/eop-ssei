@@ -9,7 +9,7 @@
 		<artifactId>eop-ssei</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>ssei-03</artifactId>
+	<artifactId>eop-ssei-05</artifactId>
 	<packaging>war</packaging>
 	
 	<name>ssei-01 Maven Webapp</name>
